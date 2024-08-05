@@ -1,10 +1,10 @@
-// src/api/index.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
+const port = process.env.PORT || 3100;
 
 app.use(cors());
 app.use(express.json());
@@ -99,8 +99,6 @@ app.put("/api/data/:id", async (req, res) => {
   }
 });
 
-// Export the app as a serverless function
-module.exports = (req, res) => {
-  // Set up middleware for the function
-  app(req, res);
-};
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
